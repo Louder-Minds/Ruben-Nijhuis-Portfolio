@@ -1,20 +1,15 @@
 import React from 'react';
-import styled from 'styled-components';
-
-const GridContainer = styled.div`
-  padding: 0px 36px;
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  grid-template-rows: repeat(2, 1fr);
-  grid-column-gap: 72px;
-  grid-row-gap: 72px;
-
-  // For testing purposes (nav-left)
-  padding-left: 188px;
-`;
+import styled, { css } from 'styled-components';
+import { Link } from 'gatsby';
 
 const Container = styled.div`
   width: 100%;
+
+  ${props =>
+    props.full &&
+    css`
+      grid-column: 1 / -1;
+    `}
 
   &:hover {
     cursor: pointer;
@@ -33,7 +28,7 @@ const Container = styled.div`
     overflow: hidden;
 
     img {
-      width: 100%;
+      object-fit: cover;
       transition: transform 0.25s ease-in-out;
       transform: scale(1);
     }
@@ -81,10 +76,14 @@ const ContentCard = ({
   tagline = 'Pinnacle overcome decieve marvelous decieve eternal-return.',
   img = '',
   subjects = ['Lorem ipsum', 'Lorem ipsum', 'Lorem ipsum'],
-  type = 'Project',
+  type = 'projects',
+  full,
 }) => (
-  <GridContainer>
-    <Container>
+  <Container full={full}>
+    <Link
+      to={`/${type}/${title.toLowerCase().replace(/\s/g, '-')}`}
+      style={{ textDecoration: 'none' }}
+    >
       <div className="img">
         <img src="https://source.unsplash.com/800x800" alt="project" />
         <ul className="subjects">
@@ -97,53 +96,8 @@ const ContentCard = ({
         <h2>{title}</h2>
         <h1>{tagline}</h1>
       </div>
-    </Container>
-
-    <Container>
-      <div className="img">
-        <img src="https://source.unsplash.com/400x400" alt="project" />
-        <ul className="subjects">
-          {subjects.map((subject, i) => (
-            <li key={i}>{subject}</li>
-          ))}
-        </ul>
-      </div>
-      <div className="text">
-        <h2>{title}</h2>
-        <h1>{tagline}</h1>
-      </div>
-    </Container>
-
-    <Container>
-      <div className="img">
-        <img src="https://source.unsplash.com/400x400" alt="project" />
-        <ul className="subjects">
-          {subjects.map((subject, i) => (
-            <li key={i}>{subject}</li>
-          ))}
-        </ul>
-      </div>
-      <div className="text">
-        <h2>{title}</h2>
-        <h1>{tagline}</h1>
-      </div>
-    </Container>
-
-    <Container>
-      <div className="img">
-        <img src="https://source.unsplash.com/400x400" alt="project" />
-        <ul className="subjects">
-          {subjects.map((subject, i) => (
-            <li key={i}>{subject}</li>
-          ))}
-        </ul>
-      </div>
-      <div className="text">
-        <h2>{title}</h2>
-        <h1>{tagline}</h1>
-      </div>
-    </Container>
-  </GridContainer>
+    </Link>
+  </Container>
 );
 
 export default ContentCard;
