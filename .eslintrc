@@ -5,13 +5,13 @@
     "node": true
   },
   "rules": {
-    "strict": 0,
+    "strict": 1,
     "no-console": "warn",
     "quotes": [
       "warn",
       "single"
     ],
-    "prettier/prettier": "warn",
+    "prettier/prettier": 0,
     "react/prop-types": "warn",
     "no-unused-vars": "warn"
   },
