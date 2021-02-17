@@ -28,6 +28,7 @@ const Container = styled.div`
     overflow: hidden;
 
     img {
+      width: 100%;
       object-fit: cover;
       transition: transform 0.25s ease-in-out;
       transform: scale(1);

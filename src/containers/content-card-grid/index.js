@@ -12,6 +12,8 @@ const GridContainer = styled.div`
   grid-row-gap: 72px;
 
   padding-left: 216px;
+
+  margin-bottom: 72px;
 `;
 
 const ContentCardGrid = ({ projects }) => (

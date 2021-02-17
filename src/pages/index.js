@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import Layout from 'components/layout';
 import { graphql } from 'gatsby';
 import ContentCardGrid from '../containers/content-card-grid';
+import StoryBlock from 'containers/story-block';
 
 const testData = [
   {
@@ -50,6 +51,7 @@ const testData = [
 const Index = ({ data }) => (
   <Layout>
     <ContentCardGrid projects={testData} />
+    <StoryBlock />
   </Layout>
 );
 
