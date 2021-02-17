@@ -1,5 +1,6 @@
 import { createGlobalStyle } from 'styled-components';
 import { accent } from 'constants/theme';
+import Formular from './fonts/Formular.ttf';
 
 export default createGlobalStyle`
   html, body, div, span, applet, object, iframe,
@@ -33,8 +34,16 @@ export default createGlobalStyle`
     font-size: 62.5%;
   }
 
+  @font-face {
+    font-family: Formular;
+    src: url(${Formular});
+    font-weight: normal;
+    font-style: normal;
+  }
+
   body {
     font-family: -apple-system,BlinkMacSystemFont,"Segoe UI",Helvetica,Arial,sans-serif,"Apple Color Emoji","Segoe UI Emoji","Segoe UI Symbol";
+    font-family: "Formular";
     line-height: 1;
     font-size: 1.6rem;
     color: #000;

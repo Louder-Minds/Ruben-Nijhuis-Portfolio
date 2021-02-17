@@ -36,8 +36,15 @@ const Container = styled.div`
 
     .subjects {
       position: absolute;
-      bottom: 36px;
-      left: 36px;
+      bottom: 18px;
+      left: 18px;
+
+      ${props =>
+        props.full &&
+        css`
+          bottom: 36px;
+          left: 36px;
+        `}
 
       display: flex;
       justify-content: start;
@@ -47,7 +54,7 @@ const Container = styled.div`
         margin-right: 18px;
         border-radius: 100px;
         background: black;
-        padding: 9px 18px;
+        padding: 7px 13px;
         font-size: 13px;
         text-align: center;
       }
