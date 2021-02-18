@@ -1,10 +1,17 @@
 import React from 'react';
 import styled, { css } from 'styled-components';
 import { Link } from 'gatsby';
+import pageLinkGenerator from 'helpers/pageLinkGenerator';
+import {
+    imgTestLink,
+    bodySmall,
+    imgBorderRadius,
+    magicNumber,
+    mainDark,
+    bodyLarge,
+} from 'constants/theme';
 
 const Container = styled.div`
-    width: 100%;
-
     ${props =>
         props.full &&
         css`
@@ -22,9 +29,9 @@ const Container = styled.div`
     }
 
     .img {
-        height: 432px;
+        height: calc(${magicNumber} * 6);
         position: relative;
-        border-radius: 6px;
+        border-radius: ${imgBorderRadius};
         overflow: hidden;
 
         img {
@@ -36,26 +43,25 @@ const Container = styled.div`
 
         .subjects {
             position: absolute;
-            bottom: 18px;
-            left: 18px;
+            display: flex;
+            justify-content: start;
+            bottom: calc(${magicNumber} / 4);
+            left: calc(${magicNumber} / 4);
 
             ${props =>
                 props.full &&
                 css`
-                    bottom: 36px;
-                    left: 36px;
+                    bottom: calc(${magicNumber} / 2);
+                    left: calc(${magicNumber} / 2);
                 `}
-
-            display: flex;
-            justify-content: start;
 
             li {
                 color: white;
-                margin-right: 18px;
+                margin-right: calc(${magicNumber} / 4);
                 border-radius: 100px;
-                background: black;
+                background: ${mainDark};
                 padding: 7px 13px;
-                font-size: 13px;
+                font-size: ${bodySmall};
                 text-align: center;
             }
         }
@@ -66,15 +72,15 @@ const Container = styled.div`
         max-width: 100%;
 
         h2 {
-            margin-top: 18px;
+            margin-top: calc(${magicNumber} / 4);
             color: #e1e1e1;
-            font-size: 24px;
+            font-size: ${bodyLarge};
         }
 
         h1 {
             color: black;
-            margin-top: 9px;
-            font-size: 24px;
+            margin-top: calc(${magicNumber} / 8);
+            font-size: ${bodyLarge};
         }
     }
 `;
@@ -82,21 +88,19 @@ const Container = styled.div`
 const ContentCard = ({
     title = 'Studio Kffein',
     tagline = 'Pinnacle overcome decieve marvelous decieve eternal-return.',
-    img = '',
+    img,
     subjects = ['Lorem ipsum', 'Lorem ipsum', 'Lorem ipsum'],
     type = 'projects',
     full,
+    it,
 }) => (
     <Container full={full}>
         <Link
-            to={`/${type}/${title.toLowerCase().replace(/\s/g, '-')}`}
+            to={`/${type}/${pageLinkGenerator(title)}`}
             style={{ textDecoration: 'none' }}
         >
             <div className="img">
-                <img
-                    src="https://source.unsplash.com/1000x1000"
-                    alt="project"
-                />
+                <img src={img} alt="project" />
                 <ul className="subjects">
                     {subjects.map((subject, i) => (
                         <li key={i}>{subject}</li>
