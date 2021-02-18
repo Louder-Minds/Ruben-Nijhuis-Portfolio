@@ -7,13 +7,19 @@ import GlobalStyle from 'global.css.js';
 import Footer from 'components/footer';
 import styled from 'styled-components';
 import { magicNumber } from 'constants/theme';
+
 const ContentGrid = styled.div`
     display: grid;
     grid-template-columns: calc(${magicNumber} * 2) 1fr;
     grid-template-rows: 2;
     grid-template-areas:
+        'home home'
         'nav content'
         'nav footer';
+
+    #homeintro {
+        grid-area: home;
+    }
     nav {
         grid-area: nav;
     }
