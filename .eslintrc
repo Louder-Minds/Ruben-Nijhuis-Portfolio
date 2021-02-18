@@ -5,22 +5,24 @@
     "node": true
   },
   "rules": {
-    "strict": 1,
+    "strict": 0,
     "no-console": "warn",
     "quotes": [
       "warn",
       "single"
     ],
     "prettier/prettier": 0,
-    "react/prop-types": "warn",
+    "react/prop-types": 0,
     "no-unused-vars": "warn"
   },
   "extends": [
     "eslint:recommended",
     "plugin:react/recommended",
-    "plugin:jsx-a11y/recommended"
+    // "plugin:jsx-a11y/recommended"
   ],
-  "plugins": ["prettier", "jsx-a11y"],
+  "plugins": ["prettier", 
+    // "jsx-a11y"
+],
   "settings": {
     "react": {
       "version": "detect"
