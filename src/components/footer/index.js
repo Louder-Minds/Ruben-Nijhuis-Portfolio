@@ -1,7 +1,16 @@
 import React from 'react';
 import styled from 'styled-components';
+import {
+    magicNumber,
+    bodyLarge,
+    regularBorderRadius,
+    bodyRegular,
+    highlight,
+    mainDark,
+    darkBackWhite,
+} from 'constants/theme';
 
-const Container = styled.div`
+const Container = styled.footer`
     box-sizing: border-box;
 
     display: grid;
@@ -9,18 +18,15 @@ const Container = styled.div`
     grid-template-rows: repeat(2, 1fr);
     grid-row-gap: 0px;
 
-    margin: 144px 36px;
+    height: calc(${magicNumber} * 3);
+
+    margin: calc(${magicNumber} * 2) calc(${magicNumber} / 2);
     margin-bottom: 0px;
+    width: calc(100% - ${magicNumber});
+    padding: calc(${magicNumber} / 2);
 
-    height: calc(72px * 3);
-
-    border-radius: 6px 6px 0px 0px;
-
-    background: black;
-
-    padding: 36px;
-
-    margin-left: calc(72px * 3);
+    border-radius: ${regularBorderRadius} ${regularBorderRadius} 0px 0px;
+    background: ${mainDark};
 
     grid-template-areas:
         'title links'
@@ -28,7 +34,7 @@ const Container = styled.div`
 
     h1,
     h2 {
-        color: white;
+        color: ${darkBackWhite};
         justify-self: start;
         display: block;
     }
@@ -36,17 +42,17 @@ const Container = styled.div`
     h1 {
         align-self: start;
         grid-area: title;
-        font-size: 26px;
+        font-size: ${bodyLarge};
     }
 
     h2 {
         align-self: end;
-        font-size: 18px;
+        font-size: ${bodyRegular};
         grid-area: copy;
 
         .green {
-            color: green;
-            font-size: 24px;
+            color: ${highlight};
+            font-size: ${bodyLarge};
         }
     }
 
@@ -54,7 +60,7 @@ const Container = styled.div`
         display: grid;
         grid-template-columns: repeat(2, 1fr);
         grid-template-rows: repeat(3, 1fr);
-        grid-row-gap: 9px;
+        grid-row-gap: calc(${magicNumber} / 2);
 
         justify-self: end;
         align-self: center;
@@ -62,10 +68,39 @@ const Container = styled.div`
         grid-area: links;
 
         a {
-            font-size: 24px;
+            position: relative;
+            width: fit-content;
+
+            font-size: ${bodyLarge};
             text-decoration: none;
-            color: white;
+            color: ${darkBackWhite};
             text-transform: uppercase;
+
+            &:hover {
+                &:after {
+                    width: 100%;
+                }
+            }
+
+            &:before,
+            &:after {
+                content: '';
+                width: 100%;
+                position: absolute;
+                display: block;
+                bottom: -5px;
+                left: 0;
+                height: 4px;
+                border-radius: 100px;
+                background: rgba(255, 255, 255, 0.25);
+            }
+
+            &:after {
+                background: rgba(255, 255, 255, 0.75);
+                width: 0%;
+                transition: width 0.5s;
+                transition-timing-function: cubic-bezier(0.58, 0.01, 0.9, 0.66);
+            }
         }
     }
 `;
@@ -75,12 +110,24 @@ const Footer = () => (
         <h1>Ruben</h1>
 
         <div className="links">
-            <a href="/">Github</a>
-            <a href="/">Instagram</a>
-            <a href="/">Linkedin</a>
-            <a href="/">Codepen</a>
-            <a href="/">Email</a>
-            <a href="/">Louder Minds</a>
+            <a target="_" href="https://github.com/rubennijhuis">
+                Github
+            </a>
+            <a target="_" href="https://www.instagram.com/ruben__nijhuis/">
+                Instagram
+            </a>
+            <a target="_" href="https://linkedin.com/in/ruben-nijhuis">
+                Linkedin
+            </a>
+            <a target="_" href="https://codepen.io/Ruben-Code">
+                Codepen
+            </a>
+            <a target="_" href="mailto:contact@rubennijhuis.com">
+                Email
+            </a>
+            <a target="_" href="https://louderminds.studio">
+                Louder Minds
+            </a>
         </div>
 
         <h2>
