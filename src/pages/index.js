@@ -5,10 +5,12 @@ import { graphql } from 'gatsby';
 import ContentCardGrid from 'containers/content-card-grid';
 import StoryBlock from 'containers/story-block';
 import { contentCardTestData } from 'constants/theme';
-import Header from '../components/header';
+import Header from 'components/header';
+import HomeIntro from 'containers/home-intro';
 
 const Index = ({ data }) => (
     <Layout>
+        <HomeIntro />
         <Header
             title={`Portfolio <br/> 2020 <span>•</span> 2021`}
             secondaryTitle={`Ad <br/> Explorandum`}
