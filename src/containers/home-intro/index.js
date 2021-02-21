@@ -2,6 +2,7 @@ import React, { useEffect, useRef } from 'react';
 import styled from 'styled-components';
 import circ from './circle.svg';
 import * as THREE from 'three';
+import anime from 'animejs';
 
 const Container = styled.div`
     grid-area: home;
@@ -26,10 +27,10 @@ const Container = styled.div`
 
     .flex {
         display: flex;
-        padding: 36px;
+        padding: 72px;
         position: relative;
 
-        p {
+        .content {
             position: relative;
             color: white;
 
@@ -48,12 +49,22 @@ const Container = styled.div`
 
     .content {
         align-self: start;
-    }
+        max-width: 750px;
 
-    .content p {
-        font-size: 75px;
-        width: 566px;
-        height: 249px;
+        div {
+            display: inline-block;
+            flex-wrap: wrap;
+            font-size: 75px;
+            max-width: fit-content;
+            height: 82px;
+            overflow: hidden;
+
+            span {
+                display: inline-block;
+                transform: translateY(100%);
+                margin-right: 22px;
+            }
+        }
     }
 
     #threeD-img-thingy {
@@ -81,8 +92,23 @@ const Container = styled.div`
 const HomeIntro = () => {
     const container = useRef(null);
     const canvas = useRef(null);
+    const contentspans = useRef(null);
+
+    const heading = 'Creating digital experiences for creative people'.split(
+        ' '
+    );
 
     useEffect(() => {
+        anime({
+            targets: document.querySelectorAll('#spans span'),
+            translateY: ['250%', '0%'],
+            rotate: ['20deg', '0deg'],
+            scaleY: [3, 1],
+            easing: 'cubicBezier(.19,.21,.01,.99)',
+            duration: 1000,
+            delay: anime.stagger(150, { start: 250 }),
+        });
+
         const scene = new THREE.Scene();
 
         const material = new THREE.MeshLambertMaterial();
@@ -157,8 +183,12 @@ const HomeIntro = () => {
                 <h1>RN</h1>
             </div>
             <div className="flex">
-                <div className="content">
-                    <p>Creating digital experiences for creative people</p>
+                <div className="content" id="spans" ref={contentspans}>
+                    {heading.map((el, i) => (
+                        <div>
+                            <span>{el}</span>
+                        </div>
+                    ))}
                 </div>
             </div>
             <div className="scroll-indicator">
