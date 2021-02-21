@@ -7,6 +7,7 @@ import GlobalStyle from 'global.css.js';
 import Footer from 'components/footer';
 import styled from 'styled-components';
 import { magicNumber } from 'constants/theme';
+import HomeIntro from 'containers/home-intro';
 
 const ContentGrid = styled.div`
     display: grid;
@@ -17,9 +18,6 @@ const ContentGrid = styled.div`
         'nav content'
         'nav footer';
 
-    #homeintro {
-        grid-area: home;
-    }
     nav {
         grid-area: nav;
     }
@@ -34,7 +32,8 @@ const ContentGrid = styled.div`
 `;
 
 const Layout = ({ data, children }) => {
-    const locoRef = useRef(null);
+    const url = typeof window !== 'undefined' ? window.location.href : '';
+    // const locoRef = useRef(null);
     useEffect(() => {
         // import('locomotive-scroll').then(locomotiveModule => {
         //     const scroll = new locomotiveModule.default({
@@ -45,10 +44,13 @@ const Layout = ({ data, children }) => {
         //     });
         // });
     }, []);
+
+    //ref={locoRef}
     return (
-        <ContentGrid ref={locoRef}>
+        <ContentGrid>
             <GlobalStyle />
             <Head />
+            {url.split('/')[3] === '' ? <HomeIntro id="homeintro" /> : null}
             <Nav />
             <main>{children}</main>
             <Footer />

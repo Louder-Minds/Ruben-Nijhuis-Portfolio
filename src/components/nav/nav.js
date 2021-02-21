@@ -15,6 +15,8 @@ const Container = styled.nav`
     width: 100%;
     height: 100%;
     border-right: 2px solid ${mainDark};
+    position: relative;
+    z-index: 9999999;
 
     ul {
         padding: calc(${magicNumber} / 4);
@@ -53,23 +55,73 @@ const Container = styled.nav`
                 }
             }
         }
+
+        .logo {
+            span {
+                display: block;
+                font-size: 25px;
+                font-weight: 900;
+                position: relative;
+                letter-spacing: 1.25px;
+            }
+
+            &:hover {
+                span {
+                    &:before {
+                        opacity: 1;
+                    }
+                }
+            }
+
+            .one,
+            .two {
+                &:before {
+                    opacity: 0;
+                    position: absolute;
+                    background: white;
+                    color: black;
+                    font-size: 21px;
+                    font-weight: 600;
+                    left: -2px;
+                    top: 2px;
+                    width: 100%;
+                    letter-spacing: -0.5px;
+                    height: 110%;
+                }
+            }
+
+            .one {
+                &:before {
+                    content: 'Creative';
+                }
+            }
+
+            .two {
+                &:before {
+                    content: 'Developer';
+                }
+            }
+        }
     }
 `;
 
 const Nav = () => (
     <Container data-scroll-sticky>
         <ul>
-            <li>
-                <Link to="/">Home logo</Link>
+            <li className="logo">
+                <Link to="/">
+                    <span className="one">Ruben</span>
+                    <span className="two">Nijhuis</span>
+                </Link>
             </li>
             <li>
                 <Link to="/projects">Projects</Link>
             </li>
             <li>
-                <Link to="/about">About</Link>
+                <Link to="/journal">Journal</Link>
             </li>
             <li>
-                <Link to="/journal">Journal</Link>
+                <Link to="/about">About</Link>
             </li>
             <li>
                 <Link to="/gallery">Gallery</Link>

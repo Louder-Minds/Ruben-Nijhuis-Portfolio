@@ -14,20 +14,21 @@ import {
 } from 'constants/theme';
 
 const Container = styled.section`
-    display: flex;
+    display: grid;
+    grid-template-columns: repeat(2, 50%);
+    grid-template-rows: 1fr;
     background: ${offsetDark};
     padding: ${magicNumber};
-    min-height: 100vh;
+    min-height: 103vh;
     box-sizing: border-box;
 
     .img {
-        min-width: 504px;
+        width: 100%;
         border-radius: ${imgBorderRadius} 0px 0px ${imgBorderRadius};
         overflow: hidden;
 
         img {
-            min-height: 100%;
-            height: calc(100vh - calc(${magicNumber} * 2));
+            height: 100%;
         }
     }
 
@@ -51,11 +52,12 @@ const Container = styled.section`
         a {
             display: inline-block;
             border-radius: ${regularBorderRadius};
-            padding: calc(${magicNumber} / 3) calc(${magicNumber} / 2);
+            padding: calc(${magicNumber} / 3) calc(${magicNumber} / 1.5);
             background: ${darkBackWhite};
             color: black;
             text-decoration: none;
             outline: none;
+            font-size: 18px;
         }
     }
 `;
@@ -75,7 +77,9 @@ const StoryBlock = () => (
             <p>
                 Apart from creating unique digital experiences he focuses on
                 learning more about art & culture by traveling to interesting
-                places, documenting his travels with his trusty camera.
+                places, meeting new people and discovering ideas from new
+                perspectives all while documenting his travels with his trusty
+                camera.
             </p>
             <p className="italic">
                 Working with creatives — Developing the internet
