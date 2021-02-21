@@ -14,13 +14,22 @@ import {
 } from 'constants/theme';
 
 const Container = styled.section`
-    display: grid;
-    grid-template-columns: repeat(2, 50%);
-    grid-template-rows: 1fr;
-    background: ${offsetDark};
+    border-top: solid 2px black;
+    border-bottom: solid 2px black;
     padding: ${magicNumber};
-    min-height: 103vh;
     box-sizing: border-box;
+
+    h2 {
+        font-size: 56px;
+        margin-bottom: 72px;
+        font-weight: 500;
+    }
+
+    .flex-container {
+        display: grid;
+        grid-template-columns: repeat(2, 50%);
+        grid-template-rows: 1fr;
+    }
 
     .img {
         width: 100%;
@@ -64,27 +73,31 @@ const Container = styled.section`
 
 const StoryBlock = () => (
     <Container>
-        <div className="img">
-            <img src={imgTestLink} alt="project" />
-        </div>
+        <h2>Hey, this is me</h2>
+        <div className="flex-container">
+            <div className="img">
+                <img src={imgTestLink} alt="project" />
+            </div>
 
-        <div className="text">
-            <p>Ruben Nijhuis is an Amsterdam based web developer.</p>
-            <p>
-                Currently building the agency Louder Minds by growing his
-                expertise in branding, design and digital product development.
-            </p>
-            <p>
-                Apart from creating unique digital experiences he focuses on
-                learning more about art & culture by traveling to interesting
-                places, meeting new people and discovering ideas from new
-                perspectives all while documenting his travels with his trusty
-                camera.
-            </p>
-            <p className="italic">
-                Working with creatives — Developing the internet
-            </p>
-            <Link to={`/about`}>Read more about his story</Link>
+            <div className="text">
+                <p>Ruben Nijhuis is an Amsterdam based web developer.</p>
+                <p>
+                    Currently building the agency Louder Minds by growing his
+                    expertise in branding, design and digital product
+                    development.
+                </p>
+                <p>
+                    Apart from creating unique digital experiences he focuses on
+                    learning more about art & culture by traveling to
+                    interesting places, meeting new people and discovering ideas
+                    from new perspectives all while documenting his travels with
+                    his trusty camera.
+                </p>
+                <p className="italic">
+                    Working with creatives — Developing the internet
+                </p>
+                <Link to={`/about`}>Read more about his story</Link>
+            </div>
         </div>
     </Container>
 );

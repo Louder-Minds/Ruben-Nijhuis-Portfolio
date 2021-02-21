@@ -5,7 +5,7 @@ const Container = styled.div`
     box-sizing: border-box;
     margin: auto;
     padding: 36px;
-    padding-top: 0px;
+    padding-top: 72px;
     display: grid;
     grid-template-columns: repeat(2, 50%);
     grid-template-rows: 1fr;
