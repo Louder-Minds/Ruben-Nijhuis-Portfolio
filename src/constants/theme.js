@@ -49,6 +49,25 @@ export const pageTransitionRevealCurve = `0.58, 0.01, 0.9, 0.66`;
  */
 export const imgTestLink = `https://source.unsplash.com/800x800`;
 
+export const journalCardTestData = [
+    {
+        title: 'Studio Kffein',
+        tagline: 'Pinnacle overcome decieve marvelous decieve eternal-return.',
+        img: 'https://source.unsplash.com/800x750',
+        subjects: ['Web development', 'Fun', 'Cool people'],
+        type: 'projects',
+        full: false,
+    },
+    {
+        title: 'Ptppnz',
+        tagline: 'Pinnacle overcome decieve marvelous decieve eternal-return.',
+        img: 'https://source.unsplash.com/800x850',
+        subjects: ['Practice', 'Living lab', 'Experiments'],
+        type: 'projects',
+        full: false,
+    },
+];
+
 export const personalTestdata = [
     {
         where: 'ROC Amstelland',
