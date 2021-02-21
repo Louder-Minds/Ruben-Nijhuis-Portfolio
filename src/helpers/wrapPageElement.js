@@ -3,7 +3,7 @@ import Transition from 'components/transition';
 import PropTypes from 'prop-types';
 
 const wrapPageElement = ({ element, props }) => {
-    return <Transition {...props}>{element}</Transition>;
+    return <>{element}</>;
 };
 
 wrapPageElement.propTypes = {
