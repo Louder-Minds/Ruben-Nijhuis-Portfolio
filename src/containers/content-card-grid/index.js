@@ -4,30 +4,50 @@ import ContentCard from 'components/content-card';
 import { magicNumber } from 'constants/theme';
 
 const GridContainer = styled.div`
-    padding: 0px calc(${magicNumber} / 2);
+    padding: calc(${magicNumber} / 2);
+
     display: grid;
     grid-template-columns: repeat(2, 1fr);
-    grid-template-rows: repeat(2, 1fr);
     grid-column-gap: ${magicNumber};
     grid-row-gap: ${magicNumber};
-
-    margin-bottom: ${magicNumber};
 `;
 
-const ContentCardGrid = ({ projects }) => (
+const ContentCardGrid = ({ cards, full, type, amount }) => (
     <GridContainer>
-        {projects.map(({ title, tagline, img, subjects, type, full }, i) => (
-            <ContentCard
-                title={title}
-                tagline={tagline}
-                img={img}
-                subjects={subjects}
-                type={type}
-                full={full}
-                it={i}
-                key={i}
-            />
-        ))}
+        {cards.edges.map(({ node }, i) => {
+            const { title, tagline, backgroundImg, subjects } = node;
+            const makeFull = i === 0 && full === true ? true : false;
+
+            if (amount === 'full') {
+                return (
+                    <ContentCard
+                        title={title}
+                        tagline={tagline}
+                        img={backgroundImg}
+                        subjects={subjects}
+                        full={makeFull}
+                        it={i}
+                        key={i}
+                        type={type}
+                    />
+                );
+            } else {
+                if (amount > i) {
+                    return (
+                        <ContentCard
+                            title={title}
+                            tagline={tagline}
+                            img={backgroundImg}
+                            subjects={subjects}
+                            full={makeFull}
+                            it={i}
+                            key={i}
+                            type={type}
+                        />
+                    );
+                }
+            }
+        })}
     </GridContainer>
 );
 
