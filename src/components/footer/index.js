@@ -24,6 +24,7 @@ const Container = styled.footer`
     margin-bottom: 0px;
     width: calc(100% - ${magicNumber});
     padding: calc(${magicNumber} / 2);
+    margin-top: 0;
 
     border-radius: ${regularBorderRadius} ${regularBorderRadius} 0px 0px;
     background: ${mainDark};

@@ -7,6 +7,7 @@ import MiniContentCardsScroll from 'containers/mini-content-cards-scroll';
 import ClickThroughContentCards from 'components/click-through-content-cards';
 
 import { personalTestdata } from 'constants/theme';
+import ExtendedAbout from 'containers/extended-about';
 
 const About = ({ data }) => (
     <Layout>
@@ -14,6 +15,7 @@ const About = ({ data }) => (
             title={`About`}
             secondaryTitle={`<h5 style="font-size: 24px">2002 the year - 8 is the gear<h5>`}
         />
+        <ExtendedAbout />
         <MiniContentCardsScroll data={personalTestdata} />
         {/* <AboutIntro /> */}
         {/* <PersonalCards /> */}

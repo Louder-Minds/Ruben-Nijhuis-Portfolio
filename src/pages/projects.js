@@ -3,7 +3,6 @@ import PropTypes from 'prop-types';
 import { graphql } from 'gatsby';
 import Layout from 'components/layout';
 import ContentCardGrid from 'containers/content-card-grid';
-import { contentCardTestData } from 'constants/theme';
 import Header from '../components/header';
 
 const Projects = ({ data }) => (
@@ -12,11 +11,12 @@ const Projects = ({ data }) => (
             title={`Portfolio <br/> 2020 <span>•</span> 2021`}
             secondaryTitle={`Ad <br/> Explorandum`}
         />
-        <ContentCardGrid projects={contentCardTestData} />
-        {/* <AboutIntro /> */}
-        {/* <PersonalCards /> */}
-        {/* <AboutOutro /> */}
-        {/* <ClickThroughContentCards /> */}
+        <ContentCardGrid
+            full={false}
+            type={'projects'}
+            amount={'full'}
+            cards={data.allContentfulProject}
+        />
     </Layout>
 );
 
@@ -26,15 +26,24 @@ Projects.propTypes = {
 
 export default Projects;
 
-// export const query = graphql`
-//     query AboutQuery {
-//         aboutJson {
-//             title
-//             content {
-//                 childMarkdownRemark {
-//                     html
-//                 }
-//             }
-//         }
-//     }
-// `;
+export const query = graphql`
+    query ProjectIndexQuery {
+        allContentfulProject {
+            edges {
+                node {
+                    title
+                    tagline
+                    subjects {
+                        raw
+                    }
+                    backgroundImg {
+                        fluid(quality: 90, maxWidth: 750) {
+                            ...GatsbyContentfulFluid_withWebp
+                        }
+                    }
+                }
+            }
+            totalCount
+        }
+    }
+`;

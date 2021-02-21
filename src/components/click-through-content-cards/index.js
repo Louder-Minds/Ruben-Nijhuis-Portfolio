@@ -11,7 +11,7 @@ const Container = styled.div`
     display: grid;
     grid-template-columns: repeat(2, 1fr);
     grid-column-gap: ${magicNumber};
-    margin-bottom: ${magicNumber};
+    margin-bottom: calc(${magicNumber} * 2);
 
     .subtitle {
         margin-bottom: 36px;

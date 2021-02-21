@@ -2,6 +2,8 @@ import React from 'react';
 import styled, { css } from 'styled-components';
 import { Link } from 'gatsby';
 import pageLinkGenerator from 'helpers/pageLinkGenerator';
+import Img from 'gatsby-image';
+
 import {
     imgTestLink,
     bodySmall,
@@ -22,7 +24,7 @@ const Container = styled.div`
         cursor: pointer;
 
         .img {
-            img {
+            div {
                 transform: scale(1.025);
             }
         }
@@ -34,7 +36,7 @@ const Container = styled.div`
         border-radius: ${imgBorderRadius};
         overflow: hidden;
 
-        img {
+        div {
             width: 100%;
             object-fit: cover;
             transition: transform 0.25s ease-in-out;
@@ -100,12 +102,12 @@ const ContentCard = ({
             style={{ textDecoration: 'none' }}
         >
             <div className="img">
-                <img src={img} alt="project" />
-                <ul className="subjects">
+                <Img fluid={img.fluid} alt="project" />
+                {/* <ul className="subjects">
                     {subjects.map((subject, i) => (
                         <li key={i}>{subject}</li>
                     ))}
-                </ul>
+                </ul> */}
             </div>
             <div className="text">
                 <h2>{title}</h2>
