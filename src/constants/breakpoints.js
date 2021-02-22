@@ -2,7 +2,7 @@ export default {
     // Laptops • desktops
     FOUR_K: 3840,
     FULL_HD: 1920,
-    HD_READY: 1336,
+    HD_READY: 1440,
     OLD_HD: 1280,
 
     // Tablets

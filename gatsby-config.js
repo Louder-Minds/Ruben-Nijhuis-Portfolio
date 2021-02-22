@@ -13,6 +13,7 @@ module.exports = {
         `gatsby-plugin-offline`,
         `gatsby-transformer-json`,
         `gatsby-transformer-remark`,
+        `gatsby-plugin-glslify`,
         {
             resolve: `gatsby-source-filesystem`,
             options: {

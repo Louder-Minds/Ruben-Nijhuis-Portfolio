@@ -1,15 +1,16 @@
 import React from 'react';
 import styled, { css } from 'styled-components';
 import { highlight, mainDark, magicNumber } from 'constants/theme';
+import MEDIA from 'helpers/mediaTemplates';
 
 const Container = styled.div`
-    padding: calc(${magicNumber} / 2);
-    background: ${mainDark};
+    padding: calc(${magicNumber} / 4);
     display: flex;
+    background: ${mainDark};
     justify-content: space-between;
 
     .first {
-        font-size: 75px;
+        font-size: 24px;
         color: white;
         width: 40%;
         font-weight: 700;
@@ -21,7 +22,7 @@ const Container = styled.div`
         justify-self: end;
         text-align: right;
         width: 45%;
-        font-size: 75px;
+        font-size: 24px;
     }
 
     span {
@@ -38,6 +39,13 @@ const Container = styled.div`
                 color: black;
             }
         `}
+
+    ${MEDIA.MIN_OLD_HD`
+    padding: calc(${magicNumber} / 2);
+    .first, .seconds {
+        font-size: 75px;
+    }
+`}
 `;
 
 const Header = ({ light, title, secondaryTitle }) => (

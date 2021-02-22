@@ -4,28 +4,36 @@ import styled from 'styled-components';
 import Img from 'gatsby-image';
 import { graphql } from 'gatsby';
 import { magicNumber, mainDark, bodySmall } from 'constants/theme';
+import { renderRichText } from 'gatsby-source-contentful/rich-text';
+import MEDIA from 'helpers/mediaTemplates';
 
 const Container = styled.div`
     .heroImg {
         overflow: hidden;
         width: 100%;
-        height: calc(72px * 6);
+        height: calc(72px * 4);
         z-index: -10;
 
         div {
             width: 100%;
         }
     }
+
+    ${MEDIA.MIN_OLD_HD`
+    .heroImg {
+        height: calc(72px * 6);
+    }
+    `}
 `;
 
 const Content = styled.div`
     z-index: 10;
-    margin-top: -144px;
-    padding: 72px;
+    margin-top: -72px;
+    padding: 0px;
     position: relative;
 
     .caseOpening {
-        padding: 72px;
+        padding: 18px;
         padding-top: 36px;
         background: #fafafa;
         border-radius: 9px;
@@ -35,8 +43,8 @@ const Content = styled.div`
         margin-bottom: 72px;
 
         h1 {
-            margin-left: -36px;
-            font-size: 75px;
+            margin-left: 0px;
+            font-size: 56px;
             margin-bottom: 18px;
         }
 
@@ -73,6 +81,31 @@ const Content = styled.div`
         }
     }
     .content {
+        padding: 18px;
+        padding-top: 36px;
+        background: #fafafa;
+        border-radius: 9px;
+
+        font-size: 24px;
+
+        margin-bottom: 72px;
+    }
+
+    ${MEDIA.MIN_OLD_HD`
+    margin-top: -144px;
+        padding: 72px;
+
+        .caseOpening {
+            padding: 72px;
+
+            h1 {
+                margin-left: -36px;
+            font-size: 75px;
+            margin-bottom: 18px;
+            }
+        }
+
+        .content {
         padding: 72px;
         background: #fafafa;
         border-radius: 9px;
@@ -81,6 +114,7 @@ const Content = styled.div`
 
         margin-bottom: 72px;
     }
+    `}
 `;
 
 const ProjectTemplate = ({ data }) => {
@@ -93,6 +127,7 @@ const ProjectTemplate = ({ data }) => {
         type1,
         year,
         role,
+        content,
     } = data.contentfulProject;
     return (
         <Layout>
@@ -124,7 +159,7 @@ const ProjectTemplate = ({ data }) => {
                             </div>
                         </div>
                     </div>
-                    <div className="content">Lorem ipsum sit dolor amet</div>
+                    <div className="content">{renderRichText(content)}</div>
                 </Content>
             </Container>
         </Layout>

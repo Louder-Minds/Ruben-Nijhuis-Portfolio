@@ -1,6 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 import { Link } from 'gatsby';
+import MEDIA from 'helpers/mediaTemplates';
 
 const StyledLink = styled(Link)`
     &:hover {
@@ -11,16 +12,22 @@ const StyledLink = styled(Link)`
     align-items: center;
     justify-content: center;
 
-    width: calc(100% - 72px);
-    height: 108px;
+    width: calc(100% - 36px);
+    height: 90px;
     background: black;
     color: white;
-    font-size: 24px;
+    font-size: 18px;
     border: none;
     border-radius: 6px;
     text-decoration-line: underline;
     margin: auto;
     margin-bottom: 72px;
+
+    ${MEDIA.MIN_OLD_HD`
+        width: calc(100% - 72px);
+        height: 108px;
+        font-size: 22px;
+    `}
 `;
 
 const ReadMore = ({ text, to }) => (

@@ -17,10 +17,10 @@ const About = ({ data }) => (
         />
         <ExtendedAbout />
         <MiniContentCardsScroll data={personalTestdata} />
-        {/* <AboutIntro /> */}
-        {/* <PersonalCards /> */}
-        {/* <AboutOutro /> */}
-        <ClickThroughContentCards />
+        <ClickThroughContentCards
+            project={data.allContentfulProject.edges[0].node}
+            journal={data.allContentfulJournal.edges[0].node}
+        />
     </Layout>
 );
 
@@ -32,11 +32,37 @@ export default About;
 
 export const query = graphql`
     query AboutQuery {
-        aboutJson {
-            title
-            content {
-                childMarkdownRemark {
-                    html
+        allContentfulProject(sort: { fields: createdAt }, limit: 1) {
+            edges {
+                node {
+                    title
+                    tagline
+                    subjects {
+                        raw
+                    }
+                    createdAt
+                    backgroundImg {
+                        fluid(quality: 90, maxWidth: 750) {
+                            ...GatsbyContentfulFluid_withWebp
+                        }
+                    }
+                }
+            }
+        }
+        allContentfulJournal(sort: { fields: createdAt }, limit: 1) {
+            edges {
+                node {
+                    title
+                    tagline
+                    subjects {
+                        raw
+                    }
+                    createdAt
+                    backgroundImg {
+                        fluid(quality: 90, maxWidth: 750) {
+                            ...GatsbyContentfulFluid_withWebp
+                        }
+                    }
                 }
             }
         }

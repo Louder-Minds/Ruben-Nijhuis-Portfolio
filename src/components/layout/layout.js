@@ -9,14 +9,19 @@ import styled from 'styled-components';
 import { magicNumber } from 'constants/theme';
 import HomeIntro from 'containers/home-intro';
 
+import MEDIA from 'helpers/mediaTemplates';
+
 const ContentGrid = styled.div`
+    padding-top: 54px;
+
     display: grid;
-    grid-template-columns: calc(${magicNumber} * 2) 1fr;
-    grid-template-rows: 2;
+    grid-template-rows: 4;
+    grid-template-columns: 1fr;
     grid-template-areas:
-        'home home'
-        'nav content'
-        'nav footer';
+        'nav'
+        'home'
+        'content'
+        'footer';
 
     nav {
         grid-area: nav;
@@ -29,6 +34,15 @@ const ContentGrid = styled.div`
     footer {
         grid-area: footer;
     }
+
+    ${MEDIA.MIN_OLD_HD`
+    padding-top: 0;
+        grid-template-columns: calc(${magicNumber} * 2) 1fr;
+        grid-template-areas:
+        'home home'
+        'nav content'
+        'nav footer';
+    `}
 `;
 
 const Layout = ({ data, children }) => {

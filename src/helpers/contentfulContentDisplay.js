@@ -22,3 +22,17 @@ const options = {
         },
     },
 };
+
+const getFormattedContent = (content, type) => {
+    let selectedOptions = undefined;
+
+    // switch (type) {
+    //     case 'about':
+    //         selectedOptions =
+
+    // }
+
+    return <>{renderRichText(content, selectedOptions)}</>;
+};
+
+export default getFormattedContent;

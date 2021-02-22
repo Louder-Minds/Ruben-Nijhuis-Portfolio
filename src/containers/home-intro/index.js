@@ -3,9 +3,89 @@ import styled from 'styled-components';
 import circ from './circle.svg';
 import * as THREE from 'three';
 import anime from 'animejs';
+import MEDIA from 'helpers/mediaTemplates';
 
 const Container = styled.div`
     grid-area: home;
+    grid-column: -1 / 1;
+    box-sizing: border-box;
+    height: calc(100vh - 54px);
+
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    padding: 18px;
+    position: relative;
+    overflow: hidden;
+    background: #1e1e1e;
+
+    .logo {
+        opacity: 0;
+        font-size: 32px;
+        font-weight: 900;
+        color: white;
+        z-index: 100;
+    }
+
+    .flex {
+        margin-left: -36px;
+        transform: scale(0.6) translateX(-20%);
+        display: flex;
+        position: relative;
+        width: 700px;
+
+        .content {
+            position: relative;
+            color: white;
+            width: 600px;
+
+            div {
+                display: inline-block;
+                font-size: 75px;
+                overflow: hidden;
+
+                span {
+                    display: inline-block;
+                    margin-right: 22px;
+                }
+            }
+
+            &:before {
+                content: '';
+                position: absolute;
+                width: 144px;
+                height: 9px;
+                background: #00efac;
+                top: -30px;
+                left: 4px;
+                border-radius: 18px;
+            }
+        }
+    }
+
+    #threeD-img-thingy {
+        width: 100%;
+        height: 100%;
+        position: absolute;
+        left: 0;
+        top: 0;
+    }
+
+    .scroll-indicator {
+        margin-left: -36px;
+        margin-bottom: -36px;
+        color: white;
+        display: flex;
+        align-items: center;
+        z-index: 100;
+
+        .circ {
+            margin-right: -36px;
+        }
+    }
+
+    ${MEDIA.MIN_OLD_HD`
+        grid-area: home;
     grid-column: -1 / 1;
     box-sizing: border-box;
     height: 100vh;
@@ -19,16 +99,15 @@ const Container = styled.div`
     background: #1e1e1e;
 
     .logo {
-        font-size: 32px;
-        font-weight: 900;
-        color: white;
-        z-index: 100;
+        opacity: 1;
     }
 
     .flex {
         display: flex;
         padding: 72px;
         position: relative;
+
+        transform: scale(1) translateX(0%);
 
         .content {
             position: relative;
@@ -40,7 +119,7 @@ const Container = styled.div`
                 width: 144px;
                 height: 9px;
                 background: #00efac;
-                top: -18px;
+                top: -22px;
                 left: 4px;
                 border-radius: 18px;
             }
@@ -55,13 +134,10 @@ const Container = styled.div`
             display: inline-block;
             flex-wrap: wrap;
             font-size: 75px;
-            max-width: fit-content;
-            height: 82px;
             overflow: hidden;
 
             span {
                 display: inline-block;
-                transform: translateY(100%);
                 margin-right: 22px;
             }
         }
@@ -87,6 +163,7 @@ const Container = styled.div`
             margin-right: -36px;
         }
     }
+    `}
 `;
 
 const HomeIntro = () => {
@@ -101,8 +178,8 @@ const HomeIntro = () => {
     useEffect(() => {
         anime({
             targets: document.querySelectorAll('#spans span'),
-            translateY: ['250%', '0%'],
-            rotate: ['20deg', '0deg'],
+            translateY: ['250%', '-14%'],
+            rotate: ['25deg', '0deg'],
             scaleY: [3, 1],
             easing: 'cubicBezier(.19,.21,.01,.99)',
             duration: 1000,
@@ -111,14 +188,14 @@ const HomeIntro = () => {
 
         const scene = new THREE.Scene();
 
-        const material = new THREE.MeshLambertMaterial();
-
+        const material = new THREE.MeshNormalMaterial();
+        material.flatShading = true;
         const dodeca = new THREE.Mesh(
-            new THREE.OctahedronGeometry(2.5, 2),
+            new THREE.OctahedronGeometry(2.5, 3),
             material
         );
 
-        dodeca.position.z = -3;
+        dodeca.position.z = -3.5;
         dodeca.position.x = 2.5;
         scene.background = new THREE.Color(0x1e1e1e);
 

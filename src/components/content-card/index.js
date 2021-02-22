@@ -3,6 +3,7 @@ import styled, { css } from 'styled-components';
 import { Link } from 'gatsby';
 import pageLinkGenerator from 'helpers/pageLinkGenerator';
 import Img from 'gatsby-image';
+import MEDIA from 'helpers/mediaTemplates';
 
 import {
     imgTestLink,
@@ -13,7 +14,22 @@ import {
     bodyLarge,
 } from 'constants/theme';
 
+import { BLOCKS } from '@contentful/rich-text-types';
+import { renderRichText } from 'gatsby-source-contentful/rich-text';
+
+const formatting = {
+    renderNode: {
+        [BLOCKS.LIST_ITEM]: (node, children) => (
+            <li>{children[0].props.children[0]}</li>
+        ),
+        [BLOCKS.UL_LIST]: (node, children) => (
+            <ul className="subjects">{children}</ul>
+        ),
+    },
+};
+
 const Container = styled.div`
+    margin-bottom: 36px;
     ${props =>
         props.full &&
         css`
@@ -31,7 +47,7 @@ const Container = styled.div`
     }
 
     .img {
-        height: calc(${magicNumber} * 6);
+        height: calc(${magicNumber} * 4);
         position: relative;
         border-radius: ${imgBorderRadius};
         overflow: hidden;
@@ -53,8 +69,8 @@ const Container = styled.div`
             ${props =>
                 props.full &&
                 css`
-                    bottom: calc(${magicNumber} / 2);
-                    left: calc(${magicNumber} / 2);
+                    bottom: calc(${magicNumber} / 4);
+                    left: calc(${magicNumber} / 4);
                 `}
 
             li {
@@ -85,17 +101,28 @@ const Container = styled.div`
             font-size: ${bodyLarge};
         }
     }
+
+    ${MEDIA.MIN_OLD_HD`
+        margin-bottom: 0px;
+        .img {
+            height: calc(${magicNumber} * 6);
+        }
+
+        .subjects {
+            bottom: calc(${magicNumber} / 4);
+            left: calc(${magicNumber} / 4);
+
+            ${props =>
+                props.full &&
+                css`
+                    bottom: calc(${magicNumber} / 2);
+                    left: calc(${magicNumber} / 2);
+                `}
+        }
+    `}
 `;
 
-const ContentCard = ({
-    title = 'Studio Kffein',
-    tagline = 'Pinnacle overcome decieve marvelous decieve eternal-return.',
-    img,
-    subjects = ['Lorem ipsum', 'Lorem ipsum', 'Lorem ipsum'],
-    type = 'projects',
-    full,
-    it,
-}) => (
+const ContentCard = ({ title, tagline, img, subjects, type, full, it }) => (
     <Container full={full}>
         <Link
             to={`/${type}/${pageLinkGenerator(title)}`}
@@ -103,11 +130,7 @@ const ContentCard = ({
         >
             <div className="img">
                 <Img fluid={img.fluid} alt="project" />
-                {/* <ul className="subjects">
-                    {subjects.map((subject, i) => (
-                        <li key={i}>{subject}</li>
-                    ))}
-                </ul> */}
+                {renderRichText(subjects, formatting)}
             </div>
             <div className="text">
                 <h2>{title}</h2>

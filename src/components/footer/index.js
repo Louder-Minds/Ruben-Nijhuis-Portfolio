@@ -10,28 +10,30 @@ import {
     darkBackWhite,
 } from 'constants/theme';
 
+import MEDIA from 'helpers/mediaTemplates';
+
 const Container = styled.footer`
     box-sizing: border-box;
 
     display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    grid-template-rows: repeat(2, 1fr);
-    grid-row-gap: 0px;
+    grid-template-rows: repeat(3, 1fr);
+    grid-row-gap: 36px;
 
-    height: calc(${magicNumber} * 3);
+    height: calc(${magicNumber} * 6);
 
-    margin: calc(${magicNumber} * 2) calc(${magicNumber} / 2);
+    margin: calc(${magicNumber} * 2) calc(${magicNumber} / 4);
     margin-bottom: 0px;
-    width: calc(100% - ${magicNumber});
-    padding: calc(${magicNumber} / 2);
+    width: calc(100% - calc(${magicNumber} / 2));
+    padding: calc(${magicNumber} / 4);
     margin-top: 0;
 
     border-radius: ${regularBorderRadius} ${regularBorderRadius} 0px 0px;
     background: ${mainDark};
 
     grid-template-areas:
-        'title links'
-        'copy links';
+        'title'
+        'links'
+        'copy';
 
     h1,
     h2 {
@@ -89,7 +91,7 @@ const Container = styled.footer`
                 width: 100%;
                 position: absolute;
                 display: block;
-                bottom: -5px;
+                bottom: 15px;
                 left: 0;
                 height: 4px;
                 border-radius: 100px;
@@ -104,6 +106,34 @@ const Container = styled.footer`
             }
         }
     }
+
+    ${MEDIA.MIN_OLD_HD`
+        grid-template-columns: repeat(2, 1fr);
+        grid-template-rows: repeat(2, 1fr);
+        grid-row-gap: 0px;
+
+        height: calc(${magicNumber} * 3);
+
+        margin: calc(${magicNumber} * 2) calc(${magicNumber} / 2);
+        margin-bottom: 0;
+        width: calc(100% - ${magicNumber});
+        padding: calc(${magicNumber} / 2);
+
+        grid-template-areas:
+            'title links'
+            'copy links';
+
+        .links {
+            grid-row-gap: calc(${magicNumber} / 2);
+
+            a {
+                &:before,
+                &:after {
+                    bottom: -5px;
+                }
+            }
+        }
+    `}
 `;
 
 const Footer = () => (

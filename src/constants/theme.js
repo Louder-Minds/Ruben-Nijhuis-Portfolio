@@ -113,14 +113,6 @@ export const personalTestdata = [
 
 export const contentCardTestData = [
     {
-        title: 'Studio Kffein',
-        tagline: 'Pinnacle overcome decieve marvelous decieve eternal-return.',
-        img: 'https://source.unsplash.com/800x750',
-        subjects: ['Web development', 'Fun', 'Cool people'],
-        type: 'projects',
-        full: true,
-    },
-    {
         title: 'Ptppnz',
         tagline: 'Pinnacle overcome decieve marvelous decieve eternal-return.',
         img: 'https://source.unsplash.com/800x850',
