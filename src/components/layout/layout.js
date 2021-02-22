@@ -45,7 +45,7 @@ const ContentGrid = styled.div`
     `}
 `;
 
-const Layout = ({ data, children }) => {
+const Layout = ({ data, children, showIntro }) => {
     const url = typeof window !== 'undefined' ? window.location.href : '';
     // const locoRef = useRef(null);
     useEffect(() => {
@@ -64,7 +64,7 @@ const Layout = ({ data, children }) => {
         <ContentGrid>
             <GlobalStyle />
             <Head />
-            {url.split('/')[3] === '' ? <HomeIntro id="homeintro" /> : null}
+            {showIntro ? <HomeIntro id="homeintro" /> : null}
             <Nav />
             <main>{children}</main>
             <Footer />

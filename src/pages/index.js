@@ -7,9 +7,10 @@ import StoryBlock from 'containers/story-block';
 import { contentCardTestData, journalCardTestData } from 'constants/theme';
 import Header from 'components/header';
 import ReadMore from 'components/read-more-button';
+import HomeIntro from 'containers/home-intro';
 
 const Index = ({ data }) => (
-    <Layout>
+    <Layout showIntro={true}>
         <Header
             title={`Portfolio <br/> 2020 <span>•</span> 2021`}
             secondaryTitle={`Ad <br/> Explorandum`}
