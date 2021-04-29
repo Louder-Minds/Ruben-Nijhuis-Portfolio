@@ -13,29 +13,27 @@ import anime from 'animejs';
 import MEDIA from 'helpers/mediaTemplates';
 
 const Container = styled.nav`
+    display: flex;
     position: fixed;
+    align-items: center;
     left: 0;
     top: 0;
     box-sizing: border-box;
-
+    z-index: 30000;
     width: 100%;
 
     border-bottom: 2px solid black;
-    height: 54px;
-    padding: 18px;
-    box-sizing: border-box;
-    z-index: 30000;
-    display: flex;
-    align-items: center;
+    height: calc(${magicNumber} / 4 * 3);
+    padding: calc(${magicNumber} / 4);
 
     backdrop-filter: blur(10px);
 
     .mobileIF {
-        width: 100%;
         display: flex;
         justify-content: space-between;
         align-items: center;
         align-content: center;
+        width: 100%;
         height: 100%;
     }
 
@@ -43,11 +41,11 @@ const Container = styled.nav`
         display: inline-flex;
         align-items: center;
         height: 100%;
-        font-size: 24px;
         width: fit-content;
+        font-size: ${bodyLarge};
 
         a {
-            color: black;
+            color: ${mainDark};
             text-decoration: none;
         }
     }
@@ -55,11 +53,11 @@ const Container = styled.nav`
     #buttonToggle {
         box-sizing: border-box;
         display: flex;
-        height: 100%;
         flex-direction: column;
         justify-content: space-between;
         align-content: center;
-        width: 36px;
+        height: 100%;
+        width: calc(${magicNumber} / 2);
 
         .line {
             display: inline-block;
@@ -73,13 +71,13 @@ const Container = styled.nav`
     #navList {
         box-sizing: border-box;
         width: 100%;
-        height: calc(100vh - 54px);
+        height: calc(100vh - calc(${magicNumber} / 4 * 3));
         position: fixed;
         background: white;
-        padding: 36px;
-        padding-top: 72px;
+        padding: calc(${magicNumber} / 2);
+        padding-top: calc(${magicNumber});
         left: 0;
-        top: 54px;
+        top: calc(${magicNumber} / 4 * 3);
         transform: translateY(-125%);
         z-index: 29999;
 
@@ -106,14 +104,15 @@ const Container = styled.nav`
                 }
 
                 &:before {
-                    transition: all 0.35s ease-in-out;
                     content: '';
                     position: absolute;
                     width: 0%;
                     height: 2px;
-                    background-color: ${highlight};
                     left: 0;
                     bottom: -4px;
+
+                    background-color: ${highlight};
+                    transition: all 0.35s ease-in-out;
                 }
             }
         }
@@ -137,11 +136,10 @@ const Container = styled.nav`
 
         #navList {
             padding: 0;
-            padding-top: 36px;
             display: flex;
             flex-direction: column;
             position: sticky !important;
-            top: 0;
+            top: 36px;
             position: sticky;
             transform: none;
             
@@ -232,33 +230,34 @@ const Container = styled.nav`
 
 const Nav = () => {
     const button = useRef(null);
-    let isClicked = false;
+    let changeCompleted = 0;
+
     useEffect(() => {
         button.current.addEventListener('click', () => {
-            if (isClicked === false) {
+            console.log(changeCompleted);
+            if (changeCompleted % 2 === 0) {
                 anime({
                     targets: '#navList',
                     scaleX: [3, 1],
                     translateX: ['250%', '0%'],
                     easing: 'cubicBezier(.19,.21,.01,.99)',
+                    changeComplete: () => changeCompleted++,
                 });
-                isClicked = true;
             } else {
                 anime({
                     targets: '#navList',
                     translateX: ['0%', '250%'],
                     scaleX: [1, 3],
                     easing: 'cubicBezier(.19,.21,.01,.99)',
-                    duration: 2000,
+                    changeComplete: () => changeCompleted++,
                 });
-                isClicked = false;
             }
         });
     }, []);
 
     return (
-        <Container data-scroll-sticky>
-            <div class="mobileIF">
+        <Container id="navnav">
+            <div className="mobileIF">
                 <div className="mobileLogo">
                     <Link to={'/'}>Ruben</Link>
                 </div>
@@ -267,7 +266,7 @@ const Nav = () => {
                     <div className="line" />
                 </div>
             </div>
-            <ul id="navList">
+            <ul id="navList" data-scroll-sticky data-scroll-target="#navnav">
                 <li className="logo">
                     <Link to="/">
                         <span className="one">Ruben</span>
@@ -283,12 +282,6 @@ const Nav = () => {
                 <li>
                     <Link to="/about">About</Link>
                 </li>
-                {/* <li>
-                <Link to="/gallery">Gallery</Link>
-            </li>
-            <li>
-                <Link to="/contact">Contact</Link>
-            </li> */}
             </ul>
         </Container>
     );

@@ -12,7 +12,7 @@ import HomeIntro from 'containers/home-intro';
 import MEDIA from 'helpers/mediaTemplates';
 
 const ContentGrid = styled.div`
-    padding-top: 54px;
+    padding-top: calc(${magicNumber} / 4 * 3);
 
     display: grid;
     grid-template-rows: 4;
@@ -36,7 +36,7 @@ const ContentGrid = styled.div`
     }
 
     ${MEDIA.MIN_OLD_HD`
-    padding-top: 0;
+        padding-top: 0;
         grid-template-columns: calc(${magicNumber} * 2) 1fr;
         grid-template-areas:
         'home home'
@@ -45,32 +45,18 @@ const ContentGrid = styled.div`
     `}
 `;
 
-const Layout = ({ data, children, showIntro }) => {
-    const url = typeof window !== 'undefined' ? window.location.href : '';
-    // const locoRef = useRef(null);
-    useEffect(() => {
-        // import('locomotive-scroll').then(locomotiveModule => {
-        //     const scroll = new locomotiveModule.default({
-        //         el: locoRef.current,
-        //         smooth: true,
-        //         smoothMobile: false,
-        //         multiplier: 0.75,
-        //     });
-        // });
-    }, []);
-
-    //ref={locoRef}
-    return (
-        <ContentGrid>
-            <GlobalStyle />
-            <Head />
-            {showIntro ? <HomeIntro id="homeintro" /> : null}
-            <Nav />
-            <main>{children}</main>
+const Layout = ({ data, children, showIntro = false }) => (
+    <ContentGrid>
+        <GlobalStyle />
+        <Head />
+        {showIntro ? <HomeIntro id="homeintro" /> : null}
+        <Nav />
+        <main>
+            {children}
             <Footer />
-        </ContentGrid>
-    );
-};
+        </main>
+    </ContentGrid>
+);
 
 Layout.propTypes = {
     children: PropTypes.node.isRequired,

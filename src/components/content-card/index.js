@@ -4,18 +4,17 @@ import { Link } from 'gatsby';
 import pageLinkGenerator from 'helpers/pageLinkGenerator';
 import Img from 'gatsby-image';
 import MEDIA from 'helpers/mediaTemplates';
+import { BLOCKS } from '@contentful/rich-text-types';
+import { renderRichText } from 'gatsby-source-contentful/rich-text';
 
 import {
-    imgTestLink,
     bodySmall,
-    imgBorderRadius,
+    bodyRegular,
+    regularBorderRadius,
     magicNumber,
     mainDark,
     bodyLarge,
 } from 'constants/theme';
-
-import { BLOCKS } from '@contentful/rich-text-types';
-import { renderRichText } from 'gatsby-source-contentful/rich-text';
 
 const formatting = {
     renderNode: {
@@ -30,6 +29,8 @@ const formatting = {
 
 const Container = styled.div`
     margin-bottom: 36px;
+
+    // If content-card needs to span full width;
     ${props =>
         props.full &&
         css`
@@ -49,11 +50,12 @@ const Container = styled.div`
     .img {
         height: calc(${magicNumber} * 4);
         position: relative;
-        border-radius: ${imgBorderRadius};
+        border-radius: ${regularBorderRadius};
         overflow: hidden;
 
         div {
-            width: 100%;
+            min-width: 100%;
+            min-height: 100%;
             object-fit: cover;
             transition: transform 0.25s ease-in-out;
             transform: scale(1);
@@ -79,7 +81,7 @@ const Container = styled.div`
                 border-radius: 100px;
                 background: ${mainDark};
                 padding: 7px 13px;
-                font-size: ${bodySmall};
+                font-size: 10px;
                 text-align: center;
             }
         }
@@ -89,35 +91,48 @@ const Container = styled.div`
         width: 100%;
         max-width: 100%;
 
+        line-height: 1.3;
+
         h2 {
             margin-top: calc(${magicNumber} / 4);
             color: #e1e1e1;
-            font-size: ${bodyLarge};
+            font-size: ${bodyRegular};
         }
 
         h1 {
             color: black;
             margin-top: calc(${magicNumber} / 8);
-            font-size: ${bodyLarge};
+            font-size: ${bodyRegular};
         }
     }
 
     ${MEDIA.MIN_OLD_HD`
         margin-bottom: 0px;
+        
         .img {
-            height: calc(${magicNumber} * 6);
+            height: calc(${magicNumber} * 8);
+
+            .subjects {
+                bottom: calc(${magicNumber} / 4);
+                left: calc(${magicNumber} / 4);
+        
+                ${props =>
+                    props.full &&
+                    css`
+                        bottom: calc(${magicNumber} / 2);
+                        left: calc(${magicNumber} / 2);
+                    `}
+                li {
+                    padding: 8px 16px;
+                    font-size: ${bodySmall} !important;
+                }
+            }
         }
 
-        .subjects {
-            bottom: calc(${magicNumber} / 4);
-            left: calc(${magicNumber} / 4);
-
-            ${props =>
-                props.full &&
-                css`
-                    bottom: calc(${magicNumber} / 2);
-                    left: calc(${magicNumber} / 2);
-                `}
+        .text {
+            h1, h2 {
+                font-size: ${bodyLarge};
+            }
         }
     `}
 `;

@@ -23,8 +23,7 @@ export const subtitle = `32px`;
 export const bodyLarge = `24px`;
 export const bodyRegular = `18px`;
 export const bodySmall = `13px`;
-
-export const lineHeight = `1.5`;
+export const lineHeight = `1.4`;
 
 /**
  * Radii

@@ -1,38 +1,64 @@
 import React from 'react';
 import styled from 'styled-components';
 import MiniContentCard from 'components/mini-content-card';
-import { magicNumber } from 'constants/theme';
+import { magicNumber, h1, subtitle } from 'constants/theme';
+import MEDIA from 'helpers/mediaTemplates';
 
 const Container = styled.div`
-    max-width: calc(100vw - calc(${magicNumber} * 2));
-    overflow-x: scroll;
-    .scrollableContainer {
-        margin-bottom: 72px;
-        padding: 36px;
-        padding-right: 72px;
-        display: flex;
-        overflow-x: scroll;
-        overflow-y: hidden;
-        max-width: calc(100vw - calc(${magicNumber} * 2));
-        white-space: nowrap;
-        -webkit-overflow-scrolling: touch;
-    }
-    .scrollableContainer::-webkit-scrollbar {
-        width: 0;
-    }
-
     .subtitle {
-        margin-left: 36px;
-        font-size: 24px;
+        margin-left: calc(${magicNumber} / 4);
+        margin-bottom: calc(${magicNumber} / 2);
+
+        font-size: ${h1};
         font-weight: 700;
     }
+
+    .container {
+        display: grid;
+        grid-template-columns: 1fr;
+        grid-gap: calc(${magicNumber} / 2);
+        padding: calc(${magicNumber} / 4);
+
+        margin-bottom: calc(${magicNumber} * 2);
+    }
+
+    ${MEDIA.MIN_TABLET`
+        margin-bottom: calc(${magicNumber} * 2);
+
+        .container {
+            grid-template-columns: 1fr 1fr;
+            margin-bottom: calc(${magicNumber} * 1);
+        }
+    `};
+
+    ${MEDIA.MIN_OLD_HD`
+        margin-bottom: calc(${magicNumber} * 2);
+        max-width: calc(100vw - calc(${magicNumber} * 2));
+
+        .container {
+            padding: calc(${magicNumber} / 2);
+        }
+
+        .subtitle {
+            margin-left: calc(${magicNumber} / 2);
+            margin-bottom: calc(${magicNumber} / 4);
+            font-size: ${subtitle};
+            font-weight: 700;
+        }
+    `}
+
+    ${MEDIA.MIN_HD_READY`
+        .container {
+            grid-template-columns: 1fr 1fr 1fr;
+        }
+    `};
 `;
 
-const MiniContentCardsScroll = ({ data }) => (
+const MiniContentCardsScroll = ({ work, education }) => (
     <Container>
         <h2 className="subtitle">Work</h2>
-        <div className="scrollableContainer">
-            {data.map(({ where, what, when }, i) => (
+        <div className="container">
+            {work.map(({ where, what, when }, i) => (
                 <MiniContentCard
                     where={where}
                     what={what}
@@ -42,8 +68,8 @@ const MiniContentCardsScroll = ({ data }) => (
             ))}
         </div>
         <h2 className="subtitle">Education</h2>
-        <div className="scrollableContainer">
-            {data.map(({ where, what, when }, i) => (
+        <div className="container">
+            {education.map(({ where, what, when }, i) => (
                 <MiniContentCard
                     where={where}
                     what={what}

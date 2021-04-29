@@ -21,28 +21,32 @@ const Index = ({ data }) => (
             type={'projects'}
             cards={data.allContentfulProject}
             amount={5}
+            io={true}
         />
         <ReadMore
             text={`Discover all ${data.allContentfulProject.totalCount} projects`}
             to={`/projects`}
         />
-        <StoryBlock />
-        <div style={{ paddingTop: '36px' }}>
-            <h2
-                style={{
-                    marginLeft: '36px',
-                    fontSize: '24px',
-                }}
-            >
-                Journal entries
-            </h2>
-            <ContentCardGrid
-                full={false}
-                type={'journal'}
-                cards={data.allContentfulJournal}
-                amount={2}
-            />
-        </div>
+        <Header
+            title={`I guess this is me`}
+            secondaryTitle={`Nice weather <br/> Nice face`}
+            light={true}
+        />
+        <StoryBlock
+            img={data.contentfulAbout.me}
+            text={data.contentfulAbout.aboutMeSmall}
+        />
+        <Header
+            title={`Journal`}
+            secondaryTitle={`My experiences <br/> and ideas`}
+            light={true}
+        />
+        <ContentCardGrid
+            full={false}
+            type={'journal'}
+            cards={data.allContentfulJournal}
+            amount={2}
+        />
         <ReadMore
             text={`Discover all ${data.allContentfulJournal.totalCount} journal entries`}
             to={`/journal`}
@@ -67,7 +71,7 @@ export const query = graphql`
                         raw
                     }
                     backgroundImg {
-                        fluid(quality: 90, maxWidth: 750) {
+                        fluid(quality: 100, maxWidth: 750) {
                             ...GatsbyContentfulFluid_withWebp
                         }
                     }
@@ -85,13 +89,24 @@ export const query = graphql`
                         raw
                     }
                     backgroundImg {
-                        fluid(quality: 90, maxWidth: 750) {
+                        fluid(quality: 100, maxWidth: 750) {
                             ...GatsbyContentfulFluid_withWebp
                         }
                     }
                 }
             }
             totalCount
+        }
+
+        contentfulAbout {
+            aboutMeSmall {
+                raw
+            }
+            me {
+                fluid(quality: 100, maxWidth: 1200) {
+                    ...GatsbyContentfulFluid_withWebp
+                }
+            }
         }
     }
 `;

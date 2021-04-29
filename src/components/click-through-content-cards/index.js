@@ -1,26 +1,25 @@
 import React from 'react';
 import styled from 'styled-components';
 import ContentCard from 'components/content-card';
-import { magicNumber, contentCardTestData } from 'constants/theme';
+import { magicNumber, bodyRegular } from 'constants/theme';
 import MEDIA from 'helpers/mediaTemplates';
 
-const ref1 = contentCardTestData[0];
-const ref2 = contentCardTestData[1];
-
 const Container = styled.div`
-    padding: 0px calc(${magicNumber} / 2);
-    display: grid;
-    grid-template-columns: repeat(1, 1fr);
-    grid-gap: ${magicNumber};
+    padding: 0px calc(${magicNumber} / 4);
     margin-bottom: calc(${magicNumber} * 2);
 
+    display: grid;
+    grid-template-columns: repeat(1, 1fr);
+    grid-gap: calc(${magicNumber});
+
     .subtitle {
-        margin-bottom: 36px;
-        font-size: 24px;
+        margin-bottom: calc(${magicNumber} / 2);
+        font-size: ${bodyRegular};
     }
 
     ${MEDIA.MIN_OLD_HD`
         grid-template-columns: repeat(2, 1fr);
+        padding: 0px calc(${magicNumber} / 2);
     `}
 `;
 
@@ -33,7 +32,7 @@ const ClickThroughContentCards = ({ project, journal }) => (
                 tagline={project.tagline}
                 img={project.backgroundImg}
                 subjects={project.subjects}
-                type={'project'}
+                type={'projects'}
                 full={false}
             />
         </div>

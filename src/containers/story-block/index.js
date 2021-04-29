@@ -1,34 +1,36 @@
-import { Link } from 'gatsby';
 import React from 'react';
 import styled from 'styled-components';
+import Img from 'gatsby-image';
 import {
-    imgTestLink,
     imgBorderRadius,
     magicNumber,
     mainDark,
-    bodyLarge,
     bodyRegular,
-    offsetDark,
     regularBorderRadius,
     darkBackWhite,
     lineHeight,
+    h2,
+    subtitle,
 } from 'constants/theme';
+import { renderRichText } from 'gatsby-source-contentful/rich-text';
 import MEDIA from 'helpers/mediaTemplates';
 
 const Container = styled.section`
-    padding: calc(${magicNumber} / 4);
+    padding: calc(${magicNumber}) calc(${magicNumber} / 4);
+    padding-top: calc(${magicNumber} / 2);
     box-sizing: border-box;
     margin-right: 0;
 
     h2 {
         font-size: 56px;
-        margin-bottom: 36px;
+        margin-bottom: calc(${magicNumber} / 2);
         font-weight: 500;
     }
 
     .flex-container {
+        background: ${mainDark};
+        border-radius: ${imgBorderRadius};
         display: grid;
-        grid-template-rows: repeat(2, 50%);
         grid-template-rows: 1fr;
     }
 
@@ -38,7 +40,7 @@ const Container = styled.section`
         height: calc(${magicNumber} * 5);
         overflow: hidden;
 
-        img {
+        div {
             width: 100%;
             height: 100%;
             object-fit: cover;
@@ -46,7 +48,7 @@ const Container = styled.section`
     }
 
     .text {
-        padding: calc(${magicNumber} / 4);
+        padding: calc(${magicNumber} / 2);
         border-radius: 0px 0px ${regularBorderRadius} ${regularBorderRadius};
         background: ${mainDark};
 
@@ -57,113 +59,121 @@ const Container = styled.section`
             line-height: ${lineHeight};
         }
 
-        .italic {
-            font-style: italic;
-            margin-bottom: calc(${magicNumber} / 2);
+        p:last-child {
+            margin-bottom: 0px;
         }
 
         a {
-            box-sizing: border-box;
-            width: 100%;
+            color: white;
             display: inline-block;
-            border-radius: ${regularBorderRadius};
-            padding: calc(${magicNumber} / 3) calc(${magicNumber} / 1.5);
-            background: ${darkBackWhite};
-            color: black;
+            transition: all 0.5s ease-in-out;
+            position: relative;
             text-decoration: none;
-            outline: none;
-            font-size: 18px;
+            font-size: 16px;
+
+            &:hover {
+                &:after {
+                    width: 100%;
+                }
+            }
+
+            &:before,
+            &:after {
+                content: '';
+                width: 98%;
+                position: absolute;
+                display: block;
+                bottom: 5px;
+                left: 1%;
+                height: 2px;
+                border-radius: 100px;
+                background: rgba(255, 255, 255, 0.5);
+            }
+
+            &:after {
+                background: rgba(255, 255, 255, 1);
+                width: 0%;
+                transition: width 0.5s;
+                transition-timing-function: cubic-bezier(0.58, 0.01, 0.9, 0.66);
+            }
         }
     }
 
-    ${MEDIA.MIN_OLD_HD`
-        border-top: solid 2px black;
-        border-bottom: solid 2px black;
-
-        h2 {
-            margin-bottom: 72px;
+    ${MEDIA.MIN_TABLET`
+        .img {
+            height: calc(${magicNumber} * 10);
         }
 
-        padding: ${magicNumber};
+        .text {
+            display: flex;
+            align-content: center;
+            justify-content: center;
+            flex-direction: column;
 
+            p {
+                font-size: ${subtitle};
+            }
+        }
+    `}
+
+    ${MEDIA.MIN_OLD_HD`  
         .flex-container {
             grid-template-columns: repeat(2, 50%);
             grid-template-rows: 1fr;
         }
 
         .img {
-            width: 100%;
             border-radius: ${imgBorderRadius} 0px 0px ${imgBorderRadius};
-            height: 100% !important;
-            overflow: hidden;
-
-            img {
-                height: 100%;
-                width: auto;
-            }
+            height: 100%;
+            min-height: calc(${magicNumber} * 8);
         }
 
         .text {
-        padding: ${magicNumber};
-        border-radius: 0px ${regularBorderRadius} ${regularBorderRadius} 0px;
-        background: ${mainDark};
+            border-radius: 0px ${regularBorderRadius} ${regularBorderRadius} 0px;
 
-        p {
-            color: ${darkBackWhite};
-            font-size: ${bodyLarge};
-            margin-bottom: calc(${magicNumber} / 2);
-            line-height: ${lineHeight};
+            p {
+                font-size: 32px;
+                color: ${darkBackWhite};
+                margin-bottom: calc(${magicNumber} / 2);
+                line-height: ${lineHeight};
+            }
+
+            a {
+                font-size: 36px;
+                display: inline-block;
+                text-decoration: none;
+                outline: none;
+            }
+        }
+    `}
+
+    ${MEDIA.MIN_HD_READY`
+        padding: calc(${magicNumber} / 2);
+        padding-top: 0;
+        margin-bottom: calc(${magicNumber} * 2);
+
+        h2 {
+            margin-bottom: calc(${magicNumber} * 1);
         }
 
-        a {
-            display: inline-block;
-            border-radius: ${regularBorderRadius};
-            padding: calc(${magicNumber} / 3) calc(${magicNumber} / 1.5);
-            background: ${darkBackWhite};
-            color: black;
-            text-decoration: none;
-            outline: none;
-            font-size: 18px;
+        .text {
+            padding: calc(${magicNumber} * 1);
+
+            p {
+                font-size: ${h2};
+            }
         }
-    }
     `}
 `;
 
-const StoryBlock = () => (
+const StoryBlock = ({ img, text }) => (
     <Container>
-        <h2>Hey, this is me</h2>
         <div className="flex-container">
             <div className="img">
-                <img src={imgTestLink} alt="project" />
+                <Img fluid={img.fluid} alt="me" />
             </div>
 
-            <div className="text">
-                <p>Ruben Nijhuis is an Amsterdam based web developer.</p>
-                <p>
-                    Currently building the agency Louder Minds by growing his
-                    expertise in branding, design and digital product
-                    development.
-                </p>
-                {/* <p>
-                    These days the main digital focus of Ruben lies at three
-                    dimensional digital experiences. With the increasing power
-                    mobile devices posess he saw an opportunity that was only
-                    just starting to emerge. By adding small 3d interactions on
-                    sites he created online experiences that have never been
-                    built before.
-                </p> */}
-                <p>
-                    Apart from creating unique digital products he focuses on
-                    learning more about art & culture by traveling to
-                    interesting places, meeting new people and discovering ideas
-                    from new perspectives all while documenting his travels with
-                    his trusty camera.
-                </p>
-                <p className="italic">
-                    Working with creatives — Developing the internet
-                </p>
-                <Link to={`/about`}>Read more about his story</Link>
-            </div>
+            <div className="text">{renderRichText(text)}</div>
         </div>
     </Container>
 );

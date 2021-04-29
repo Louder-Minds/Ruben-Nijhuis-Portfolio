@@ -102,8 +102,8 @@ export default createGlobalStyle`
     margin-bottom: 2rem;
   }
 
-/*  ! locomotive-scroll v4.1.0 | MIT License | https://github.com/locomotivemtl/locomotive-scroll
-html.has-scroll-smooth {
+/*  ! locomotive-scroll v4.1.0 | MIT License | https://github.com/locomotivemtl/locomotive-scroll */
+    html.has-scroll-smooth {
   overflow: hidden; }
 
 html.has-scroll-dragging {
@@ -168,5 +168,7 @@ html.has-scroll-dragging {
     cursor: grabbing; }
   [data-scroll-direction="horizontal"] .c-scrollbar_thumb {
     right: auto;
-    bottom: 0; */
+    bottom: 0; 
+  }
+
 `;

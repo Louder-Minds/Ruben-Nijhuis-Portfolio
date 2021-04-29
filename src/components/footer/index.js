@@ -17,23 +17,20 @@ const Container = styled.footer`
 
     display: grid;
     grid-template-rows: repeat(3, 1fr);
-    grid-row-gap: 36px;
-
-    height: calc(${magicNumber} * 6);
-
-    margin: calc(${magicNumber} * 2) calc(${magicNumber} / 4);
-    margin-bottom: 0px;
-    width: calc(100% - calc(${magicNumber} / 2));
-    padding: calc(${magicNumber} / 4);
-    margin-top: 0;
-
-    border-radius: ${regularBorderRadius} ${regularBorderRadius} 0px 0px;
-    background: ${mainDark};
-
+    grid-row-gap: calc(${magicNumber} / 2);
     grid-template-areas:
         'title'
         'links'
         'copy';
+
+    height: calc(${magicNumber} * 6);
+    width: calc(100% - calc(${magicNumber} / 2));
+
+    margin: 0px calc(${magicNumber} / 4);
+    padding: calc(${magicNumber} / 4);
+
+    border-radius: ${regularBorderRadius} ${regularBorderRadius} 0px 0px;
+    background: ${mainDark};
 
     h1,
     h2 {
@@ -73,7 +70,7 @@ const Container = styled.footer`
         a {
             position: relative;
             width: fit-content;
-
+            height: fit-content;
             font-size: ${bodyLarge};
             text-decoration: none;
             color: ${darkBackWhite};
@@ -91,7 +88,7 @@ const Container = styled.footer`
                 width: 100%;
                 position: absolute;
                 display: block;
-                bottom: 15px;
+                bottom: -7px;
                 left: 0;
                 height: 4px;
                 border-radius: 100px;

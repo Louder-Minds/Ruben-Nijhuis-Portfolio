@@ -8,7 +8,10 @@ import Header from 'components/header';
 
 const Journal = ({ data }) => (
     <Layout>
-        <Header title={`Journal`} />
+        <Header
+            title={`Journal`}
+            secondaryTitle={`<h5>Small brain <br/> big think <h5>`}
+        />
         <ContentCardGrid
             full={false}
             type={'journal'}

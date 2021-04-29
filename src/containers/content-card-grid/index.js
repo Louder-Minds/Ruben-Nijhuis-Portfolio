@@ -4,17 +4,23 @@ import ContentCard from 'components/content-card';
 import { magicNumber } from 'constants/theme';
 import MEDIA from 'helpers/mediaTemplates';
 
+import IO from 'components/io';
+
 const GridContainer = styled.div`
     padding: calc(${magicNumber} / 4);
     display: grid;
     grid-template-columns: 1fr;
-    grid-row-gap: ${magicNumber};
-    margin-bottom: 72px;
+    grid-row-gap: calc(${magicNumber} / 2);
+
+    ${MEDIA.MIN_TABLET`
+        grid-template-columns: repeat(2, 1fr);
+        grid-column-gap: calc(${magicNumber} / 2);
+    `}
 
     ${MEDIA.MIN_OLD_HD`
         padding: calc(${magicNumber} / 2);
-        grid-template-columns: repeat(2, 1fr);
-        grid-column-gap: ${magicNumber};
+        grid-gap: calc(${magicNumber});
+        margin-bottom: calc(${magicNumber});
     `}
 `;
 
@@ -26,6 +32,12 @@ const ContentCardGrid = ({ cards, full, type, amount }) => (
 
             if (amount === 'full') {
                 return (
+                    // <IO
+                    //     rootMargin="-360px"
+                    //     key={i}
+                    //     style={{ gridColumn: '1/-1' }}
+                    // >
+                    // {({ hasBeenVisible }) => (
                     <ContentCard
                         title={title}
                         tagline={tagline}
@@ -35,11 +47,16 @@ const ContentCardGrid = ({ cards, full, type, amount }) => (
                         it={i}
                         key={i}
                         type={type}
+                        // hasBeenVisible={hasBeenVisible}
                     />
+                    // )}
+                    // </IO>
                 );
             } else {
                 if (amount > i) {
                     return (
+                        // <IO rootMargin="-360px" key={i}>
+                        // {({ hasBeenVisible }) => (
                         <ContentCard
                             title={title}
                             tagline={tagline}
@@ -49,7 +66,10 @@ const ContentCardGrid = ({ cards, full, type, amount }) => (
                             it={i}
                             key={i}
                             type={type}
+                            // hasBeenVisible={hasBeenVisible}
                         />
+                        //     )}
+                        // </IO>
                     );
                 }
             }

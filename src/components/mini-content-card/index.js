@@ -6,36 +6,43 @@ import {
     underline,
     magicNumber,
     bodyLarge,
+    bodySmall,
     darkBackWhite,
+    imgBorderRadius,
 } from 'constants/theme';
 
 const Container = styled.div`
-    box-sizing: border-box;
-    display: flex;
+    display: inline-flex;
     flex-direction: column;
-    background: ${mainDark};
-    padding: calc(${magicNumber} / 2);
-    height: 216px;
-    min-width: 432px;
-    width: 432px;
-    border-radius: 9px;
+    box-sizing: border-box;
     justify-content: space-between;
-    margin-right: 36px;
+
+    background: ${mainDark};
+    border-radius: ${imgBorderRadius};
+
+    padding: calc(${magicNumber} / 3.5) calc(${magicNumber} / 3);
+    margin: auto;
+
+    min-height: calc(${magicNumber} * 1);
+    width: 100%;
+    height: 100%;
 
     .where {
         color: ${underline};
-        font-size: ${bodyRegular};
+        font-size: ${bodySmall};
+        margin-bottom: calc(${magicNumber} / 8);
     }
 
     .what {
-        margin-bottom: 54px;
+        line-height: 1.2;
+        margin-bottom: calc(${magicNumber} / 2);
         font-size: ${bodyLarge};
         color: ${darkBackWhite};
     }
 
     .when {
         color: ${darkBackWhite};
-        font-size: ${bodyRegular};
+        font-size: ${bodySmall};
     }
 `;
 
