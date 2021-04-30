@@ -1,5 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
+import MEDIA from 'helpers/mediaTemplates';
 
 const skills_list = [
     'HTML5',
@@ -33,40 +34,85 @@ const skills_array = [
     'Interactive prototyping',
 ];
 
+const interest = [
+    'Music creation',
+    'Digital art',
+    'Formula 1',
+    'Running',
+    'Paris',
+    'Photography',
+    'Graphical Pogramming',
+    'Teaching',
+];
+
 const Container = styled.div`
     background: rgba(0, 0, 0, 0.1);
+    padding: 18px;
+    margin-bottom: 72px;
+
+    h2 {
+        margin-bottom: 18px;
+        font-size: 36px;
+        margin-left: -9px;
+    }
+
+    ${MEDIA.MIN_OLD_HD`
+        padding: 36px;
+        margin-bottom: 144px;
+    `}
+`;
+
+const InfoBlock = styled.div`
     display: grid;
-    grid-template-columns: 1fr 1fr 1fr 1fr;
+    grid-template-columns: 1fr 1fr;
     flex-wrap: wrap;
+
+    background: white;
     border-radius: 6px;
 
-    padding: 72px;
-    margin: 36px;
+    padding: 18px;
+    margin-bottom: 72px;
+    grid-gap: 18px;
+    grid-column-gap: 36px;
 
     p {
-        font-size: 36px;
-        font-weight: 900;
+        margin: 0;
+        justify-self: start;
+        font-size: 22px;
+        font-weight: 500;
         display: inline-block;
-        margin-right: 18px;
         line-height: 1.4;
     }
+
+    ${MEDIA.MIN_OLD_HD`
+        grid-template-columns: 1fr 1fr 1fr 1fr;
+        padding: 36px;
+    `}
 `;
 
 const Skills = () => (
-    <>
-        <h2>Skills I have gathered over the years</h2>
-        <Container>
+    <Container>
+        <h2>Hard skills</h2>
+        <InfoBlock>
             {skills_list.map((key, i) => {
                 return <p key={i}>{key}</p>;
             })}
-        </Container>
+        </InfoBlock>
 
-        <Container>
+        <h2>Soft skills</h2>
+        <InfoBlock>
             {skills_array.map((key, i) => {
                 return <p key={i}>{key}</p>;
             })}
-        </Container>
-    </>
+        </InfoBlock>
+
+        <h2>Interests</h2>
+        <InfoBlock>
+            {interest.map((key, i) => {
+                return <p key={i}>{key}</p>;
+            })}
+        </InfoBlock>
+    </Container>
 );
 
 export default Skills;

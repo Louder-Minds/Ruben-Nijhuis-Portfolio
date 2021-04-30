@@ -119,9 +119,8 @@ export default class IO extends Component {
 
     render() {
         const { isVisible, hasBeenVisible } = this.state;
-
         return (
-            <div ref={this.handleRef}>
+            <div ref={this.handleRef} style={this.props.style}>
                 {this.props.children({ isVisible, hasBeenVisible })}
             </div>
         );

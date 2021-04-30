@@ -6,6 +6,7 @@ import Img from 'gatsby-image';
 import MEDIA from 'helpers/mediaTemplates';
 import { BLOCKS } from '@contentful/rich-text-types';
 import { renderRichText } from 'gatsby-source-contentful/rich-text';
+import IO from 'components/io';
 
 import {
     bodySmall,
@@ -29,6 +30,14 @@ const formatting = {
 
 const Container = styled.div`
     margin-bottom: 36px;
+
+    // Fade-in animation
+    opacity: ${({ hasBeenVisible }) => (hasBeenVisible ? 1 : 0)};
+    transform: ${({ hasBeenVisible }) =>
+        hasBeenVisible
+            ? `translateY(0px) scale(1)`
+            : `translateY(18px) scale(0.99)`};
+    transition: opacity 0.35s ease-in-out, transform 0.5s ease-in-out;
 
     // If content-card needs to span full width;
     ${props =>
@@ -108,6 +117,7 @@ const Container = styled.div`
 
     ${MEDIA.MIN_OLD_HD`
         margin-bottom: 0px;
+        transition-delay: ${({ i }) => (i % 2 === 0 ? `0.5s` : `0s`)};
         
         .img {
             height: calc(${magicNumber} * 8);
@@ -137,22 +147,29 @@ const Container = styled.div`
     `}
 `;
 
-const ContentCard = ({ title, tagline, img, subjects, type, full, it }) => (
-    <Container full={full}>
-        <Link
-            to={`/${type}/${pageLinkGenerator(title)}`}
-            style={{ textDecoration: 'none' }}
-        >
-            <div className="img">
-                <Img fluid={img.fluid} alt="project" />
-                {renderRichText(subjects, formatting)}
-            </div>
-            <div className="text">
-                <h2>{title}</h2>
-                <h1>{tagline}</h1>
-            </div>
-        </Link>
-    </Container>
-);
+const ContentCard = ({ title, tagline, img, subjects, type, full, it }) => {
+    const fullOrNotfull = full ? '1 / -1' : 'auto / auto';
+    return (
+        <IO rootMargin="-150px" style={{ gridColumn: fullOrNotfull }}>
+            {({ isVisible, hasBeenVisible }) => (
+                <Container hasBeenVisible={hasBeenVisible} full={full} i={it}>
+                    <Link
+                        to={`/${type}/${pageLinkGenerator(title)}`}
+                        style={{ textDecoration: 'none' }}
+                    >
+                        <div className="img">
+                            <Img fluid={img.fluid} alt="project" />
+                            {renderRichText(subjects, formatting)}
+                        </div>
+                        <div className="text">
+                            <h2>{title}</h2>
+                            <h1>{tagline}</h1>
+                        </div>
+                    </Link>
+                </Container>
+            )}
+        </IO>
+    );
+};
 
 export default ContentCard;

@@ -27,11 +27,6 @@ const Index = ({ data }) => (
             text={`Discover all ${data.allContentfulProject.totalCount} projects`}
             to={`/projects`}
         />
-        <Header
-            title={`I guess this is me`}
-            secondaryTitle={`Nice weather <br/> Nice face`}
-            light={true}
-        />
         <StoryBlock
             img={data.contentfulAbout.me}
             text={data.contentfulAbout.aboutMeSmall}

@@ -1,7 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 import ContentCard from 'components/content-card';
-import { magicNumber, bodyRegular } from 'constants/theme';
+import { magicNumber, bodyLarge } from 'constants/theme';
 import MEDIA from 'helpers/mediaTemplates';
 
 const Container = styled.div`
@@ -13,8 +13,9 @@ const Container = styled.div`
     grid-gap: calc(${magicNumber});
 
     .subtitle {
-        margin-bottom: calc(${magicNumber} / 2);
-        font-size: ${bodyRegular};
+        margin-bottom: calc(${magicNumber} / 3);
+        font-size: ${bodyLarge};
+        font-weight: 700;
     }
 
     ${MEDIA.MIN_OLD_HD`

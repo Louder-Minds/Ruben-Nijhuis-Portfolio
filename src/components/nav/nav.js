@@ -21,12 +21,10 @@ const Container = styled.nav`
     box-sizing: border-box;
     z-index: 30000;
     width: 100%;
-
+    background: white;
     border-bottom: 2px solid black;
     height: calc(${magicNumber} / 4 * 3);
     padding: calc(${magicNumber} / 4);
-
-    backdrop-filter: blur(10px);
 
     .mobileIF {
         display: flex;
@@ -234,7 +232,6 @@ const Nav = () => {
 
     useEffect(() => {
         button.current.addEventListener('click', () => {
-            console.log(changeCompleted);
             if (changeCompleted % 2 === 0) {
                 anime({
                     targets: '#navList',

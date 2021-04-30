@@ -30,49 +30,18 @@ const ContentCardGrid = ({ cards, full, type, amount }) => (
             const { title, tagline, backgroundImg, subjects } = node;
             const makeFull = i === 0 && full === true ? true : false;
 
-            if (amount === 'full') {
-                return (
-                    // <IO
-                    //     rootMargin="-360px"
-                    //     key={i}
-                    //     style={{ gridColumn: '1/-1' }}
-                    // >
-                    // {({ hasBeenVisible }) => (
-                    <ContentCard
-                        title={title}
-                        tagline={tagline}
-                        img={backgroundImg}
-                        subjects={subjects}
-                        full={makeFull}
-                        it={i}
-                        key={i}
-                        type={type}
-                        // hasBeenVisible={hasBeenVisible}
-                    />
-                    // )}
-                    // </IO>
-                );
-            } else {
-                if (amount > i) {
-                    return (
-                        // <IO rootMargin="-360px" key={i}>
-                        // {({ hasBeenVisible }) => (
-                        <ContentCard
-                            title={title}
-                            tagline={tagline}
-                            img={backgroundImg}
-                            subjects={subjects}
-                            full={makeFull}
-                            it={i}
-                            key={i}
-                            type={type}
-                            // hasBeenVisible={hasBeenVisible}
-                        />
-                        //     )}
-                        // </IO>
-                    );
-                }
-            }
+            return (
+                <ContentCard
+                    title={title}
+                    tagline={tagline}
+                    img={backgroundImg}
+                    subjects={subjects}
+                    full={makeFull}
+                    it={i}
+                    key={i}
+                    type={type}
+                />
+            );
         })}
     </GridContainer>
 );

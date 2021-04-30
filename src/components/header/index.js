@@ -14,11 +14,7 @@ const Container = styled.div`
     justify-content: space-between;
     align-items: center;
 
-    top: 52px;
-    position: sticky;
-    z-index: 100;
-
-    padding: 9px calc(${magicNumber} / 8);
+    padding: calc(${magicNumber} / 8) 18px;
     background: ${mainDark};
     box-sizing: border-box;
     border-top: 2px solid black;

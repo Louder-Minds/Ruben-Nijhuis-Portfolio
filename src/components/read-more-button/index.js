@@ -30,7 +30,7 @@ const StyledLink = styled(Link)`
     border-radius: ${regularBorderRadius};
     text-decoration-line: underline;
     margin: auto;
-    margin-bottom: calc(${magicNumber} / 2);
+    margin-bottom: calc(${magicNumber} * 1);
 
     ${MEDIA.MIN_OLD_HD`
         width: calc(100% - calc(${magicNumber} * 1));

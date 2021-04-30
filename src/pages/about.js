@@ -65,7 +65,7 @@ const About = ({ data }) => (
             text={data.contentfulAbout.aboutMeLarge}
         />
         <MiniContentCardsScroll work={work} education={education} />
-        {/* <Skills /> */}
+        <Skills />
         <ClickThroughContentCards
             project={data.allContentfulProject.edges[0].node}
             journal={data.allContentfulJournal.edges[0].node}

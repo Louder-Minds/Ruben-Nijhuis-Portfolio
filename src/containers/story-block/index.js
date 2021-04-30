@@ -17,9 +17,13 @@ import MEDIA from 'helpers/mediaTemplates';
 
 const Container = styled.section`
     padding: calc(${magicNumber}) calc(${magicNumber} / 4);
-    padding-top: calc(${magicNumber} / 2);
     box-sizing: border-box;
     margin-right: 0;
+    background: black;
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 
     h2 {
         font-size: 56px;
@@ -50,10 +54,10 @@ const Container = styled.section`
     .text {
         padding: calc(${magicNumber} / 2);
         border-radius: 0px 0px ${regularBorderRadius} ${regularBorderRadius};
-        background: ${mainDark};
+        background: white;
 
         p {
-            color: ${darkBackWhite};
+            color: black;
             font-size: ${bodyRegular};
             margin-bottom: calc(${magicNumber} / 2);
             line-height: ${lineHeight};
@@ -64,7 +68,7 @@ const Container = styled.section`
         }
 
         a {
-            color: white;
+            color: black;
             display: inline-block;
             transition: all 0.5s ease-in-out;
             position: relative;
@@ -87,11 +91,11 @@ const Container = styled.section`
                 left: 1%;
                 height: 2px;
                 border-radius: 100px;
-                background: rgba(255, 255, 255, 0.5);
+                background: rgba(0, 0, 0, 0.25);
             }
 
             &:after {
-                background: rgba(255, 255, 255, 1);
+                background: rgba(0, 0, 0, 1);
                 width: 0%;
                 transition: width 0.5s;
                 transition-timing-function: cubic-bezier(0.58, 0.01, 0.9, 0.66);
@@ -103,20 +107,22 @@ const Container = styled.section`
         .img {
             height: calc(${magicNumber} * 10);
         }
-
+        
         .text {
             display: flex;
             align-content: center;
             justify-content: center;
             flex-direction: column;
-
+            
             p {
                 font-size: ${subtitle};
             }
         }
-    `}
+        `}
 
     ${MEDIA.MIN_OLD_HD`  
+        margin-bottom: 144px;
+
         .flex-container {
             grid-template-columns: repeat(2, 50%);
             grid-template-rows: 1fr;
@@ -133,7 +139,6 @@ const Container = styled.section`
 
             p {
                 font-size: 32px;
-                color: ${darkBackWhite};
                 margin-bottom: calc(${magicNumber} / 2);
                 line-height: ${lineHeight};
             }
@@ -148,9 +153,12 @@ const Container = styled.section`
     `}
 
     ${MEDIA.MIN_HD_READY`
-        padding: calc(${magicNumber} / 2);
-        padding-top: 0;
+        padding: calc(${magicNumber});
         margin-bottom: calc(${magicNumber} * 2);
+
+        .flex-container {
+            min-height: calc(100vh - 144px);
+        }
 
         h2 {
             margin-bottom: calc(${magicNumber} * 1);
