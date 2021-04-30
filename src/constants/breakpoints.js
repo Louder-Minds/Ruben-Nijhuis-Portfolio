@@ -1,5 +1,13 @@
 export default {
-  DESKTOP: 992,
-  TABLET: 768,
-  PHONE: 376,
+    // Laptops • desktops
+    FOUR_K: 3840,
+    FULL_HD: 1440,
+    HD_READY: 1200,
+    OLD_HD: 1024,
+
+    // Tablets
+    TABLET: 768,
+
+    // Phones
+    PHONE: 376,
 };
