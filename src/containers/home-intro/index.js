@@ -227,7 +227,6 @@ const HomeIntro = () => {
                 randoms[i] = Math.random();
             }
 
-            console.log(dodeca);
             // dodeca.setAttribute(
             //     'aRandom',
             //     new THREE.BufferAttribute(randoms, 1)

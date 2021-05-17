@@ -58,7 +58,6 @@ const Container = styled.div`
 
     ${MEDIA.MIN_OLD_HD`
         padding: 36px;
-        margin-bottom: 144px;
     `}
 `;
 

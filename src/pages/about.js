@@ -7,6 +7,7 @@ import MiniContentCardsScroll from 'containers/mini-content-cards-scroll';
 import ClickThroughContentCards from 'components/click-through-content-cards';
 import ExtendedAbout from 'containers/extended-about';
 import Skills from 'containers/skills';
+import Credits from '../containers/credits';
 
 const work = [
     {
@@ -66,6 +67,7 @@ const About = ({ data }) => (
         />
         <MiniContentCardsScroll work={work} education={education} />
         <Skills />
+        <Credits />
         <ClickThroughContentCards
             project={data.allContentfulProject.edges[0].node}
             journal={data.allContentfulJournal.edges[0].node}
